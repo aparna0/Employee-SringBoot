@@ -78,4 +78,15 @@ public class EmployeeServiceImplementation implements EmployeeServiceInterface{
         }
         return updated;
     }
+
+    @Override
+    public int deleteAllEMployee() throws EmptyTableException {
+       if(empRepo.count()<=0){
+           throw new EmptyTableException("Employee table is empty");
+       }
+       else{
+           empRepo.deleteAll();
+           return 1;
+       }
+    }
 }

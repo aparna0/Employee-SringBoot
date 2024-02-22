@@ -20,11 +20,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
     public List<Employee> getAllEmployees() {
-        try {
-            return empServices.getAllEmployee();
-        } catch (EmptyTableException e) {
-            throw new RuntimeException(e);
-        }
+        return empServices.getAllEmployee();
     }
 
     @GetMapping("/employees/{empId}")
@@ -47,11 +43,11 @@ public class EmployeeController {
 
     @DeleteMapping("employees/delete/{empId}")
     public String deleteEmployee(@PathVariable int empId) {
-        try {
-            return String.valueOf(empServices.deleteEmployee(empServices.getEmployee(empId)));
-        } catch (NoEmplyeeFoundException e) {
-            System.out.println(e);
-            return e.toString();
-        }
+        return String.valueOf(empServices.deleteEmployee(empServices.getEmployee(empId)));
+    }
+
+    @DeleteMapping("employees/delete")
+    public String deleteAllEmployeeData(){
+        return String.valueOf(empServices.deleteAllEMployee());
     }
 }

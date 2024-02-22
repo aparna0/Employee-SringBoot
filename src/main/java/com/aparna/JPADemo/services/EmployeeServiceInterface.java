@@ -15,4 +15,6 @@ public interface EmployeeServiceInterface {
     Employee getEmployee(int employeeId) throws NoEmplyeeFoundException;
     Employee editEmployee(Employee emp) throws NoEmplyeeFoundException;
     int deleteEmployee(Employee emp) throws NoEmplyeeFoundException;
+
+    int deleteAllEMployee() throws EmptyTableException;
 }
