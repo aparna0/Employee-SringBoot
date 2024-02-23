@@ -2,11 +2,12 @@ package com.aparna.JPADemo.controller;
 
 import com.aparna.JPADemo.Exceptions.DuplicateEmployeeException;
 import com.aparna.JPADemo.Exceptions.EmptyTableException;
+import com.aparna.JPADemo.ExceptionHandler.ErrorResponse;
 import com.aparna.JPADemo.Exceptions.NoEmplyeeFoundException;
-import com.aparna.JPADemo.Repository.EmployeeRepository;
 import com.aparna.JPADemo.model.Employee;
 import com.aparna.JPADemo.services.EmployeeServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,5 +50,24 @@ public class EmployeeController {
     @DeleteMapping("employees/delete")
     public String deleteAllEmployeeData(){
         return String.valueOf(empServices.deleteAllEMployee());
+    }
+
+
+    //========================================= Exception Handler ==========================================
+    @ExceptionHandler(value = EmptyTableException.class)
+    public ErrorResponse handleEmptyTableException(EmptyTableException ex){
+        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+    }
+
+    @ExceptionHandler( value = NoEmplyeeFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleNoEmployeeException(NoEmplyeeFoundException ex){
+        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+    }
+
+    @ExceptionHandler( value = DuplicateEmployeeException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleDuplicateEmployeeException(DuplicateEmployeeException ex){
+        return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
     }
 }
