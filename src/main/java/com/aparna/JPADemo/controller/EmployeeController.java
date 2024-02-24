@@ -1,13 +1,10 @@
 package com.aparna.JPADemo.controller;
 
 import com.aparna.JPADemo.Exceptions.DuplicateEmployeeException;
-import com.aparna.JPADemo.Exceptions.EmptyTableException;
-import com.aparna.JPADemo.ExceptionHandler.ErrorResponse;
 import com.aparna.JPADemo.Exceptions.NoEmplyeeFoundException;
 import com.aparna.JPADemo.model.Employee;
 import com.aparna.JPADemo.services.EmployeeServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
