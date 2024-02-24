@@ -52,22 +52,4 @@ public class EmployeeController {
         return String.valueOf(empServices.deleteAllEMployee());
     }
 
-
-    //========================================= Exception Handler ==========================================
-    @ExceptionHandler(value = EmptyTableException.class)
-    public ErrorResponse handleEmptyTableException(EmptyTableException ex){
-        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
-    }
-
-    @ExceptionHandler( value = NoEmplyeeFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleNoEmployeeException(NoEmplyeeFoundException ex){
-        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
-    }
-
-    @ExceptionHandler( value = DuplicateEmployeeException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponse handleDuplicateEmployeeException(DuplicateEmployeeException ex){
-        return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
-    }
 }
