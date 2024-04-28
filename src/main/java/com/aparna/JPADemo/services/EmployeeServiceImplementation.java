@@ -89,4 +89,16 @@ public class EmployeeServiceImplementation implements EmployeeServiceInterface{
            return 1;
        }
     }
+
+    @Override
+    public List<Employee> getEmployeeOfGivenName(String name) {
+        if(empRepo.getEmployeeByName(name).isEmpty()) throw new NoEmplyeeFoundException("Employee not found with given name");
+        return empRepo.getEmployeeByName(name);
+    }
+
+    @Override
+    public List<Employee> getEmployeeNameForGivenDesignation(String desingation) {
+        if(empRepo.getEmployeeNameByDesignation("dev").isEmpty()) throw new NoEmplyeeFoundException("Employee not found with givendesignation");
+        return empRepo.getEmployeeNameByDesignation(desingation);
+    }
 }

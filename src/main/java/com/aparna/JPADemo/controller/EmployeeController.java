@@ -49,4 +49,13 @@ public class EmployeeController {
         return String.valueOf(empServices.deleteAllEMployee());
     }
 
+    @GetMapping("employees/getEmployeeByName")
+    public List<Employee> getEmployeeForGivenName(@RequestParam String name){
+        return empServices.getEmployeeOfGivenName(name);
+    }
+
+    @GetMapping("employees/getEmployeeNameByDesignation")
+    public List<Employee> getEmployeeNameByDesignation(@RequestParam String designation){
+        return empServices.getEmployeeNameForGivenDesignation(designation);
+    }
 }
